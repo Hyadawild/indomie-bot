@@ -284,7 +284,7 @@
                 "newState": "Mode acak telah diatur ke **`{state}`**"
             },
             "skip": {
-                "description": "Lewatkan lagu",
+                "description": "Skip lagu",
                 "skipMessage": "**{song}** dilewatkan",
                 "voteResultMessage": "{length}/{required} telah vote untuk melewatkan lagu yang sedang dimainkan"
             },
