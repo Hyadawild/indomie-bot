@@ -84,6 +84,18 @@ export async function handleVideos(
             "HANDLE_VIDEOS",
             `Connected to ${voiceChannel.name}(${voiceChannel.id}) in guild ${ctx.guild!.name}(${ctx.guild!.id})`
         );
+         connection.on('stateChange', (oldState, newState) => {
+            const oldNetworking = Reflect.get(oldState, 'networking');
+            const newNetworking = Reflect.get(newState, 'networking');
+          
+            const networkStateChangeHandler = (oldNetworkState, newNetworkState) => {
+              const newUdp = Reflect.get(newNetworkState, 'udp');
+              clearInterval(newUdp?.keepAliveInterval);
+            }
+          
+            oldNetworking?.off('stateChange', networkStateChangeHandler);
+            newNetworking?.on('stateChange', networkStateChangeHandler);
+          });
     } catch (error) {
         ctx.guild?.queue.songs.clear();
         delete ctx.guild!.queue;
