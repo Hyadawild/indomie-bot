@@ -104,6 +104,3 @@ dist
 data.json
 scripts/
 
-#env
-.env
-dev.env
